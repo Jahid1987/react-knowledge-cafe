@@ -1,7 +1,7 @@
 import { FaBookmark } from "react-icons/fa";
 import PropTypes from "prop-types";
-const Blog = ({ blog, setBookmarks }) => {
-  //   console.log(setBookmarks);
+const Blog = ({ blog, setBookmarks, setReadTime }) => {
+  // console.log(setReadTime);
   const {
     title,
     author,
@@ -30,7 +30,10 @@ const Blog = ({ blog, setBookmarks }) => {
         </div>
         <div className="flex items-center gap-5">
           <p className="text-sm text-gray-600">{reading_time} min read </p>
-          <FaBookmark onClick={() => setBookmarks(blog)} />
+          <FaBookmark
+            className="cursor-pointer"
+            onClick={() => setBookmarks(blog)}
+          />
         </div>
       </div>
       <div className="mt-8">
@@ -44,7 +47,10 @@ const Blog = ({ blog, setBookmarks }) => {
         </p>
       </div>
       <div className="mt-8 mb-8">
-        <p className=" text-blue-600 text-lg font-bold underline underline-offset-2 ">
+        <p
+          onClick={() => setReadTime(reading_time)}
+          className=" cursor-pointer text-blue-600 text-lg font-bold underline underline-offset-2 "
+        >
           Mark as read
         </p>
       </div>
@@ -55,5 +61,6 @@ const Blog = ({ blog, setBookmarks }) => {
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
   setBookmarks: PropTypes.func.isRequired,
+  setReadTime: PropTypes.func.isRequired,
 };
 export default Blog;

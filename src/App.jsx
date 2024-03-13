@@ -5,15 +5,23 @@ import Bookmarks from "./Components/BookMarks/Bookmarks";
 import { useState } from "react";
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
+  const [readTime, setReadTime] = useState(0);
   function handleSetBookmarks(blog) {
     setBookmarks([...bookmarks, blog]);
+  }
+  function handleSetReadTime(time) {
+    setReadTime(readTime + time);
+    // console.log(time);
   }
   return (
     <>
       <Header></Header>
       <div className="p-3 md:flex max-w-7xl gap-5 mx-auto">
-        <Blogs setBookmarks={handleSetBookmarks}></Blogs>
-        <Bookmarks bookmarks={bookmarks}></Bookmarks>
+        <Blogs
+          setReadTime={handleSetReadTime}
+          setBookmarks={handleSetBookmarks}
+        ></Blogs>
+        <Bookmarks readTime={readTime} bookmarks={bookmarks}></Bookmarks>
       </div>
     </>
   );
