@@ -10,13 +10,13 @@ function App() {
   function handleSetBookmarks(blog) {
     setBookmarks([...bookmarks, blog]);
   }
-  function handleSetReadTime(time) {
+  function handleSetReadTime(time, id) {
     setReadTime(readTime + time);
-    // console.log(time);
+    handleRemoveBookmarks(id);
   }
 
-  function handleRemoveBookmarks(bookmark) {
-    setBookmarks([...bookmarks.filter((item) => item.id !== bookmark.id)]);
+  function handleRemoveBookmarks(id) {
+    setBookmarks([...bookmarks.filter((item) => item.id !== id)]);
   }
   return (
     <>
@@ -26,11 +26,7 @@ function App() {
           setReadTime={handleSetReadTime}
           setBookmarks={handleSetBookmarks}
         ></Blogs>
-        <Bookmarks
-          removeBookmarks={handleRemoveBookmarks}
-          readTime={readTime}
-          bookmarks={bookmarks}
-        ></Bookmarks>
+        <Bookmarks readTime={readTime} bookmarks={bookmarks}></Bookmarks>
       </div>
     </>
   );

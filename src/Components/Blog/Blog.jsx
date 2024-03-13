@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 const Blog = ({ blog, setBookmarks, setReadTime }) => {
   // console.log(setReadTime);
   const {
+    id,
     title,
     author,
     cover,
@@ -48,7 +49,7 @@ const Blog = ({ blog, setBookmarks, setReadTime }) => {
       </div>
       <div className="mt-8 mb-8">
         <p
-          onClick={() => setReadTime(reading_time)}
+          onClick={() => setReadTime(reading_time, id)}
           className=" cursor-pointer text-blue-600 text-lg font-bold underline underline-offset-2 "
         >
           Mark as read
