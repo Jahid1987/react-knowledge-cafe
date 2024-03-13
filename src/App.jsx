@@ -6,12 +6,17 @@ import { useState } from "react";
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
   const [readTime, setReadTime] = useState(0);
+
   function handleSetBookmarks(blog) {
     setBookmarks([...bookmarks, blog]);
   }
   function handleSetReadTime(time) {
     setReadTime(readTime + time);
     // console.log(time);
+  }
+
+  function handleRemoveBookmarks(bookmark) {
+    setBookmarks([...bookmarks.filter((item) => item.id !== bookmark.id)]);
   }
   return (
     <>
@@ -21,7 +26,11 @@ function App() {
           setReadTime={handleSetReadTime}
           setBookmarks={handleSetBookmarks}
         ></Blogs>
-        <Bookmarks readTime={readTime} bookmarks={bookmarks}></Bookmarks>
+        <Bookmarks
+          removeBookmarks={handleRemoveBookmarks}
+          readTime={readTime}
+          bookmarks={bookmarks}
+        ></Bookmarks>
       </div>
     </>
   );
